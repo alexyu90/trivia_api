@@ -107,7 +107,7 @@ POST '/quizzes'
 }
 ```
 
-####GET '/questions'
+#### GET '/questions'
 - handle GET requests for questions, including pagination (every 10 questions).
 - Request Arguments: None.
 - Returns: a list of questions, number of total questions, current category, categories.
@@ -144,7 +144,7 @@ POST '/quizzes'
 }
 ```
 
-####DELETE '/questions/<int:question_id>'
+#### DELETE '/questions/<int:question_id>'
 - DELETE question using a question ID.
 - Request Arguments: question_id.
 - Returns: id of deleted question, a list of questions and number of total questions after deletion.
@@ -173,7 +173,7 @@ POST '/quizzes'
 }
 ```
 
-####POST '/questions'
+#### POST '/questions'
 - An endpoint to POST a new question.
 - Request Arguments: question and answer text, category, and difficulty score.
 - Returns: id of posted question, a list of questions and number of total questions after post.
@@ -201,7 +201,7 @@ POST '/quizzes'
   "total_questions": 18
 }
 ```
-####POST '/search'
+#### POST '/search'
 - A POST endpoint to get questions based on a search term.
 - Request Arguments: searchTerm.
 - Returns: a list of questions and number of total questions matching searchTerm.
@@ -222,7 +222,7 @@ POST '/quizzes'
 }
 ```
 
-####GET '/categories/<int:category_id>/questions'
+#### GET '/categories/<int:category_id>/questions'
 - A GET endpoint to get questions based on category.
 - Request Arguments: category_id.
 - Returns: a list of questions and number of total questions in this category.
@@ -257,7 +257,7 @@ POST '/quizzes'
 }
 ```
 
-####POST '/quizzes'
+#### POST '/quizzes'
 - A POST endpoint to get questions to play the quiz.
 - Request Arguments: category and previous questions.
 - Returns: a random question within the given category, if provided, and that is not one of the previous questions.
