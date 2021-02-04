@@ -61,8 +61,7 @@ def create_app(test_config=None):
     @app.route('/categories')
     def get_categories():
         categories = read_categories()
-        return jsonify({'success': True, 'categories': categories
-                        })
+        return jsonify({'success': True, 'categories': categories})
 
     '''
     @DONE:
@@ -86,10 +85,13 @@ def create_app(test_config=None):
         if len(current_questions) == 0:
             abort(404)
 
+        category_ids = []   # read ids of current categories
+        [category_ids.append(question.category) for question in selection]
+
         return jsonify({
             'success': True,
             'questions': current_questions,
-            'currentCategory': None,
+            'currentCategory': category_ids,
             'categories': categories,
             'total_questions': len(Question.query.all())
         })
@@ -175,11 +177,13 @@ def create_app(test_config=None):
             Question.question.ilike(
                 '%' + search_term + '%')).all()
         current_questions = paginate_questions(request, selection)
+        category_ids = [] # read ids of current categories
+        [category_ids.append(question.category) for question in selection]
 
         return jsonify({
             'success': True,
             'questions': current_questions,
-            'currentCategory': None,
+            'currentCategory': category_ids,
             'total_questions': len(selection)})
 
     '''
@@ -225,6 +229,10 @@ def create_app(test_config=None):
 
         previous_questions = body.get('previous_questions')
         quiz_category = body.get('quiz_category')
+
+        if previous_questions is None or quiz_category is None:
+            abort(422)
+
         quiz_category_id = quiz_category.get('id', 0)
 
         if quiz_category_id == 0:
